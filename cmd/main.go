@@ -37,4 +37,27 @@ func main() {
 		subscription two read value: Ben
 		subscription one read value: Ben
 	*/
+
+	fmt.Println("now a little demo of the promise module")
+
+	myPromise := gorx.NewPromise[string]()
+
+	myPromise.Then(func(value string) {
+		fmt.Println("Layer one onResolve:", value)
+	}, func() {
+		fmt.Println("Layer one onReject")
+	}).Then(func(value string) {
+		fmt.Println("Layer two onResolve:", value)
+	}, func() {
+		fmt.Println("Layer two onReject")
+	})
+
+	myPromise.Resolve("completed successfully")
+	time.Sleep(time.Second)
+
+	/*
+		now a little demo of the promise module
+		Layer one onResolve: completed successfully
+		Layer two onResolve: completed successfully
+	*/
 }
