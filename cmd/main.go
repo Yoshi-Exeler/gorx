@@ -9,7 +9,7 @@ import (
 func main() {
 	fmt.Println("little RXJS style observable demo using the new generics")
 	// create an observable
-	name := gorx.NewObservable("Max")
+	name := gorx.NewObservable("Max") // here the type parameter is inferred from a function parameter
 	// subscribe to the observable and print the resulting value to stdout
 	name.Subscribe(func(value string) {
 		fmt.Println("subscription one read value:", value)
